@@ -1035,6 +1035,7 @@
                               <li><a href="about">About Us</a></li>
                               <li class="position-relative"><a href="products">Products</a>
                                  <ul class="sub-menu">
+                                    <!--
                                     <li><a href="antibiotics-antibacterials-anti_Infective"
                                           class="text-light-header">Antibiotics / Antibacterials /ANTI
                                           Infective</a></li>
@@ -1064,7 +1065,38 @@
                                     <li><a href="psychiatric-drugs " class="text-light-header">Psychiatric Drugs</a>
                                     </li>
                                     <li><a href="covid-products " class="text-light-header">Covid Products</a></li>
-                                    <li><a href="other-products " class="text-light-header">Other Products</a></li>
+                                    <li><a href="other-products " class="text-light-header">Other Products</a></li> -->
+                                    
+                                    <?php
+                                    function generateUrl($string)
+                                    {
+                                        // Convert to lowercase
+                                        $string = strtolower($string);
+                                        // Replace any non-alphanumeric characters with a hyphen
+                                        $string = preg_replace('/[^a-z0-9\s-]/', '', $string);
+                                        // Replace multiple spaces or hyphens with a single hyphen
+                                        $string = preg_replace('/[\s-]+/', '-', $string);
+                                        // Trim hyphens from the beginning and end of the string
+                                        $string = trim($string, '-');
+                                        return $string;
+                                    }
+
+                                    include 'db_conn.php'; // Include the database connection file
+
+                                    // Fetch categories from the database
+                                    $sql = "SELECT name FROM categories ORDER BY id";
+                                    $result = $conn->query($sql);
+
+
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            // Replace spaces with hyphens and convert to lowercase for URLs
+                                            $url = generateUrl($row['name']);
+                                            echo '      <li><a href="/products?category=' . $url . '" class="text-light-header">' . $row['name'] . '</a></li>';
+                                        }
+                                    }
+                                    $conn->close();
+                                    ?>
                                  </ul>
                               </li>
                               <li><a href="gallery">Gallery</a></li>

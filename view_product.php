@@ -439,6 +439,11 @@
                         <div class="col-lg-7">
                             <div class="main-menu main-menu-second">
                                 <nav id="mobile-menu">
+                                <ul>
+                              <li><a class="active" href="/">Home</a></li>
+                              <li><a href="about">About Us</a></li>
+                              <li class="position-relative"><a href="products">Products</a>
+                                  <ul class="sub-menu">
 
                                     <?php
                                     function generateUrl($string)
@@ -460,12 +465,6 @@
                                     $sql = "SELECT name FROM categories ORDER BY id";
                                     $result = $conn->query($sql);
 
-                                    // Start generating the HTML output
-                                    echo '<ul>';
-                                    echo '  <li><a class="active" href="/">Home</a></li>';
-                                    echo '  <li><a href="about">About Us</a></li>';
-                                    echo '  <li class="position-relative"><a href="product">Products</a>';
-                                    echo '    <ul class="sub-menu">';
 
                                     if ($result->num_rows > 0) {
                                         while ($row = $result->fetch_assoc()) {
@@ -473,20 +472,14 @@
                                             $url = generateUrl($row['name']);
                                             echo '      <li><a href="?category=' . $url . '" class="text-light-header">' . $row['name'] . '</a></li>';
                                         }
-                                    } else {
-                                        echo '      <li>No categories found</li>';
                                     }
-
-                                    echo '    </ul>';
-                                    echo '  </li>';
-                                    echo '  <li><a href="gallery">Gallery</a></li>';
-                                    echo '  <li><a href="blogs">Blogs</a></li>';
-                                    echo '  <li><a href="contact">Contact us</a></li>';
-                                    echo '</ul>';
-
                                     $conn->close();
                                     ?>
-
+                                  </ul>
+                              <li><a href="gallery">Gallery</a></li>
+                              <li><a href="blogs">Blogs</a></li>
+                              <li><a href="contact">Contact us</a></li>
+                           </ul>
                                 </nav>
                             </div>
                         </div>
