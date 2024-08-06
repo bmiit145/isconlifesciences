@@ -1033,7 +1033,7 @@
                            <ul>
                               <li><a class="active" href="/">Home</a></li>
                               <li><a href="about">About Us</a></li>
-                              <li class="position-relative"><a href="product">Products</a>
+                              <li class="position-relative"><a href="products">Products</a>
                                  <ul class="sub-menu">
                                     <li><a href="antibiotics-antibacterials-anti_Infective"
                                           class="text-light-header">Antibiotics / Antibacterials /ANTI

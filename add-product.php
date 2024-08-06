@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $stmt->close();
-    $conn->close();
+    // $conn->close();
 }
 ?>
 
@@ -152,29 +152,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
         <?php if (!empty($toastMessage)) { ?>
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": true,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        };
-        <?php if ($toastSuccess) { ?>
-        toastr.success("<?php echo $toastMessage; ?>");
-        <?php } else { ?>
-        toastr.error("<?php echo $toastMessage; ?>");
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+            <?php if ($toastSuccess) { ?>
+            toastr.success("<?php echo $toastMessage; ?>");
+
+            // time out to redirect to products page
+            setTimeout(function(){
+                // reload page
+                window.location.href = "add-product.php";
+            }, 2000);
+            <?php } else { ?>
+            toastr.error("<?php echo $toastMessage; ?>");
+            <?php } ?>
         <?php } ?>
-        <?php } ?>
+
+
+
     });
 </script>
 </body>
